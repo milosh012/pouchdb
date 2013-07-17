@@ -1,29 +1,38 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
 <head>
-  <title>TODO app</title>
+  <title>TODO application</title>
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap-responsive.min.css">
 </head>
 <body>
 
-  <h1>TODO application</h1>
-
-  <div ng-controller="TodoCtrl">
-    <h2>Tasks:</h2>
-
-    <ol>
-      <li ng-repeat="todo in todos">
-        {{todo.text}}
-        [<a ng-click="remove(todo._id)" href="#">X</a>]
-      </li>
-    </ol>
+  <div class="container" ng-controller="TodoCtrl">
+    <h1>TODO application</h1>
 
     <p>
-      <form ng-submit="submit()">
+      <form class="form-inline" ng-submit="submit()">
         <input placeholder="New task" type="text" ng-model="text" />
-        <input type="submit" value="Add" />
+        <input class="btn btn-primary" type="submit" value="Add" />
       </form>
     </p>
 
+    <table class="table table-hover span3">
+      <thead>
+        <tr>
+          <th>Task</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr ng-repeat="todo in todos">
+          <td>{{todo.text}}</td>
+          <td><a class="btn btn-mini btn-danger" ng-click="remove(todo._id)" href="#">remove</a></td>
+        </tr>
+      </tbody>
+
+    </table>
   </div>
 
   <script src="/js/pouchdb-nightly.min.js"></script>
